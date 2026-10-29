@@ -1,0 +1,69 @@
+.register-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0b090a;
+}
+
+.register-component img {
+    height: 120px;
+    width: 140px;
+    margin: auto;
+}
+
+.register-component mat-card {
+    width: 400px;
+    padding: 10px 15px;
+    background-color: #292929;
+}
+
+.register-component mat-card-header.padding-m {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.register-component mat-card-title, .register-component mat-card-subtitle {
+    color: white;
+    font-family: 'new Roboto', sans-serif;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+.register-component mat-label {  /*Cor do label: nome, email e senha*/
+    color: white !important;
+}
+
+.register-component .mat-mdc-text-field-wrapper /*Cor da caixa do input*/ {
+    background-color: #383838 !important;
+}
+
+.register-component input.mat-mdc-input-element /*Cor dp texto de exemplo*/ {
+    color: #ffffff !important;
+}
+
+/* Força o navegador a respeitar a cor de fundo nos inputs preenchidos ou salvos */
+.register-component input:-webkit-autofill,
+.register-component input:-webkit-autofill:hover, 
+.register-component input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #383838 inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.register-component .mat-mdc-text-field-wrapper .mdc-line-ripple {
+    display: none;
+}
+
+.register-component .mat-mdc-text-field-wrapper {
+
+    .mdc-line-ripple {
+        display: none;
+    }
+}
+
+
+
