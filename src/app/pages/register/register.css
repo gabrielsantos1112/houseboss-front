@@ -54,16 +54,8 @@
     transition: background-color 5000s ease-in-out 0s;
 }
 
-.register-component .mat-mdc-text-field-wrapper .mdc-line-ripple {
-    display: none;
-}
 
-.register-component .mat-mdc-text-field-wrapper {
 
-    .mdc-line-ripple {
-        display: none;
-    }
-}
 
 
 
