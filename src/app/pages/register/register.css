@@ -54,6 +54,10 @@
     transition: background-color 5000s ease-in-out 0s;
 }
 
+.register-component button {
+    background-color: #474646;
+}
+
 
 
 
