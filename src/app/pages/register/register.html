@@ -12,7 +12,7 @@
                     <mat-label>Nome</mat-label>
                     <input matInput formControlName="name">
                 </mat-form-field>
-
+                
                 <mat-form-field class="full-width">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email">
@@ -22,12 +22,12 @@
                     <mat-label>Senha</mat-label>
                     <input matInput type="password" formControlName="password">
                 </mat-form-field>
-
             </form>
         </mat-card-content>
 
         <mat-card-actions>
-            <button matButton="outlined" class="full-width" [disabled]="form.invalid" (click)="submit()">Cadastrar</button>
+            <button matButton="outlined" class="full-width" [disabled]="form.invalid"
+                (click)="submit()">Cadastrar</button>
         </mat-card-actions>
     </mat-card>
 </div>
