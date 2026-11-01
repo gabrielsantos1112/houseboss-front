@@ -14,6 +14,9 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
   encapsulation: ViewEncapsulation.None
 })
 export class Register {
+
+  logoForm = 'img/Logotipo House Boss Barberaria.png';
+
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
