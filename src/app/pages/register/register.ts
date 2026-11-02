@@ -5,6 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../../services/user';
 
 @Component({
   imports: [MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
@@ -19,11 +20,11 @@ export class Register {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private user: User) {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
+      nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      senha: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -32,7 +33,17 @@ export class Register {
       this.form.markAllAsTouched();
       return
     }
-    console.log("Formulário submetido ",this.form.value)
+
+    const formData = this.form.value;
+
+    this.user.register(formData).subscribe({
+      next: (response) => {
+          console.log('Funcionário registrado com sucesso', response)
+      },
+      error: (error) => {
+          console.error('Erro ao registrar funcionário', error)
+      }
+    })
   }
 
 }

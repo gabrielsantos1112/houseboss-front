@@ -12,10 +12,10 @@
 }
 
 .app-top-menu .logo-img {
-    height: 70px;
+    height: 73px;
     width: auto;
     max-width: 100%;
-    display: block;
+    margin: 10px 0px 0px 5px;
 }
 
 .app-top-menu a {

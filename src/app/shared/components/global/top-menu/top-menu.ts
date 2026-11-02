@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, NavigationEnd } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { Subscription, filter } from 'rxjs';
-import { reportUnhandledError } from 'rxjs/internal/util/reportUnhandledError';
+import { RouterModule} from '@angular/router';
+import { Subscription,} from 'rxjs';
+import { RouterStateService } from '../../../../core/router/router-state';
 
 @Component({
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterModule],
@@ -15,20 +14,15 @@ import { reportUnhandledError } from 'rxjs/internal/util/reportUnhandledError';
 })
 export class TopMenu implements OnInit, OnDestroy {
   appLogo = '/img/logo.png'
-
   rotaAtual: String = '';
   inscricaoRota!: Subscription;
 
-  constructor(private router: Router) { }
+  private routerService = inject(RouterStateService);
 
   ngOnInit(): void {
-    this.rotaAtual = this.router.url;
-
-    this.inscricaoRota = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((evento: any) => {
-        this.rotaAtual = evento.url;
-      });
+    this.inscricaoRota = this.routerService.rotaAtual$.subscribe(url => {
+      this.rotaAtual = url;
+    })
   }
 
   ngOnDestroy(): void {
