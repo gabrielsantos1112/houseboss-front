@@ -5,10 +5,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { User } from '../../services/user';
 
 @Component({
-  imports: [MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatProgressSpinnerModule],
   selector: 'app-register',
   styleUrl: './register.css',
   templateUrl: './register.html',
@@ -19,8 +22,10 @@ export class Register {
   logoForm = 'img/Logotipo House Boss Barberaria.png';
 
   form: FormGroup;
+  isLoading = false;
 
-  constructor(private formBuilder: FormBuilder, private user: User) {
+  constructor(
+    private formBuilder: FormBuilder, private user: User, private router: Router) {
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -36,14 +41,17 @@ export class Register {
 
     const formData = this.form.value;
 
-    this.user.register(formData).subscribe({
+    this.isLoading = true;
+
+    this.user.register(formData).pipe(finalize(() => this.isLoading = false)).subscribe({
       next: (response) => {
-          console.log('Funcionário registrado com sucesso', response)
+        this.router.navigate(['/login']);
       },
       error: (error) => {
-          console.error('Erro ao registrar funcionário', error)
+        window.alert('E-mail inválido. Insira outro e tente novamente.');
+        this.form.reset();
+        console.error('Erro ao registrar funcionário', error)
       }
     })
   }
-
 }

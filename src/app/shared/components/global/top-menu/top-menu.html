@@ -1,5 +1,5 @@
 <mat-toolbar class="app-top-menu">
-    <button matButton="tonal" class="cad-button">Entrar</button>
+    <button matButton="tonal" class="cad-button" [disabled]="estaNaRotaLogin()" routerLink="/login">Entrar</button>
     <span class="logo">
         <a routerLink="/">
            <img [src]="appLogo" alt="Logo House Boss" class="logo-img" /> 
